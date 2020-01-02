@@ -10,6 +10,7 @@ import playsound
 arabagenisligi = 3
 arabayuksekligi = 3
 screen = turtle.Screen()
+screen.title("Turtle Traffic")
 screen.setup(1.0, 1.0)
 background = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/arkaplan.gif"
 araba1 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba1.gif"
@@ -34,7 +35,7 @@ car7 = turtle.Turtle()
 skor = 0
 highskor = 0
 m = 0
-ykonum1 = 400
+ykonum1 = 500
 ykonum2 = 540
 ykonum3 = 680
 ykonum4 = 840
@@ -46,18 +47,33 @@ randx3 = random.randrange(-250,250)
 randx4 = random.randrange(-250,250)
 randx5 = random.randrange(-250,250)
 randx6 = random.randrange(-250,250)
+solatrue = False
+sagatrue = False
+asagitrue = True
 
 def sola():
-    car1.setheading(180)
-    randsola = random.randrange(25,35)
-    car1.forward(randsola)
-    car1.setheading(90)
+    global solatrue
+    global sagatrue
+    global asagitrue
+    asagitrue = False
+    sagatrue = False
+    solatrue = True
 
 def saga():
-    car1.setheading(0)
-    randsaga = random.randrange(25, 35)
-    car1.forward(randsaga)
-    car1.setheading(90)
+    global solatrue
+    global sagatrue
+    global asagitrue
+    asagitrue = False
+    solatrue = False
+    sagatrue = True
+
+def asagi():
+    global solatrue
+    global sagatrue
+    global asagitrue
+    solatrue = False
+    sagatrue = False
+    asagitrue = True
 
 def bizimaraba():
     car1.color("black")
@@ -72,6 +88,7 @@ def bizimaraba():
     turtle.listen()
     turtle.onkey(saga, "Right")
     turtle.onkey(sola, "Left")
+    turtle.onkey(asagi, "Down")
     turtle.onkey(saga, "d")
     turtle.onkey(sola, "a")
     turtle.onkey(exit, "e")
@@ -142,22 +159,26 @@ def gelenarabalar6():
 def muzik():
     global m
     m += 1
-    blah = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/Sounds/blah.wav"
-    badguy = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/Sounds/badguy.wav"
-    highway = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/Sounds/highway.wav"
-    risingsun = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/Sounds/risingsun.wav"
-    tokyo = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/Sounds/tokyo.wav"
+    oldtown = "Sounds/oldtown.wav"
+    gangsta = "Sounds/gangsta.wav"
+    highway = "Sounds/highway.wav"
+    risingsun = "Sounds/risingsun.wav"
+    tokyo = "Sounds/tokyo.wav"
+    crash = "Sounds/crash.wav"
     if m == 1:
-        winsound.PlaySound(risingsun, winsound.SND_ASYNC)
+        winsound.PlaySound(oldtown, winsound.SND_ASYNC)
     if m == 2:
         winsound.PlaySound(highway, winsound.SND_ASYNC)
     if m == 3:
-        winsound.PlaySound(tokyo, winsound.SND_ASYNC)
+        winsound.PlaySound(risingsun, winsound.SND_ASYNC)
     if m == 4:
-        winsound.PlaySound(blah, winsound.SND_ASYNC)
+        winsound.PlaySound(tokyo, winsound.SND_ASYNC)
     if m == 5:
-        winsound.PlaySound(badguy, winsound.SND_ASYNC)
+        winsound.PlaySound(gangsta, winsound.SND_ASYNC)
         m = 0
+    if m == 6:
+        winsound.PlaySound(crash, winsound.SND_ASYNC)
+        m = 1
 
 def exit():
     screen.bye()
@@ -185,6 +206,7 @@ def oyundongusu():
     ykonum5 = 980
     ykonum6 = 1090
     car1x = car1.xcor()
+    car1y = car1.ycor()
     randx1 = random.randrange(car1x - 150, car1x + 150)
     randx2 = random.randrange(car1x - 150, car1x + 150)
     randx3 = random.randrange(car1x - 150, car1x + 150)
@@ -199,6 +221,12 @@ def oyundongusu():
     skor = 0
     yazi = turtle.Turtle()
     yazi2 = turtle.Turtle()
+    yazi3 = turtle.Turtle()
+    yazi4 = turtle.Turtle()
+    yazi.speed(0)
+    yazi2.speed(0)
+    yazi3.speed(0)
+    yazi4.speed(0)
     yazi.color("white")
     yazi.penup()
     yazi.pencolor("black")
@@ -207,15 +235,31 @@ def oyundongusu():
     yazi2.penup()
     yazi2.pencolor("black")
     yazi2.setposition(-40, 330)
-    yazi.setposition(-40, 260)
-    yazi2.setposition(-40, 330)
+    yazi3.color("white")
+    yazi3.penup()
+    yazi3.pencolor("black")
+    yazi3.setposition(-560, 300)
+    yazi4.color("white")
+    yazi4.penup()
+    yazi4.pencolor("black")
+    yazi4.setposition(530, 275)
     yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
     yazi2.write("En İyi Skor: {}".format(highskor), align="center", font=("Arial", 40, "normal"))
+    yazi3.write("Müzik Değiştirmek için M'ye\nOyundan Çıkmak için  E'ye\nBasın", align="center", font=("Arial", 20, "normal"))
+    yazi4.write("Sağa hareket için →(d)\nSola hareket için ←(a)\nDurmak için ↓(s)\nTuşlarını kullanabilirsiniz", align="center", font=("Arial", 20, "normal"))
     yazi.hideturtle()
     yazi2.hideturtle()
+    yazi3.hideturtle()
+    yazi4.hideturtle()
 
     oyuncalisiyor = True
     while oyuncalisiyor:
+        if solatrue:
+            car1x -= 6
+            car1.goto(car1x, car1y)
+        if sagatrue:
+            car1x += 6
+            car1.goto(car1x, car1y)
         if skor < 3:
             ykonum1 -= 6
             ykonum2 -= 6
@@ -389,36 +433,51 @@ def oyundongusu():
         car7x = car7.xcor()
 
         if not -320 < car1x < 280:
+            global m
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum1 < car1y < ykonum1 + 50) or (ykonum1 < car1y + 50 < ykonum1 + 50)) and ((car2x < car1x < car2x + 50) or (car2x < car1x + 50 < car2x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum2 < car1y < ykonum2 + 50) or (ykonum2 < car1y + 50 < ykonum2 + 50)) and ((car3x < car1x < car3x + 50) or (car3x < car1x + 50 < car3x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum3 < car1y < ykonum3 + 50) or (ykonum3 < car1y + 50 < ykonum3 + 50)) and ((car4x < car1x < car4x + 50) or (car4x < car1x + 50 < car4x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum4 < car1y < ykonum4 + 50) or (ykonum4 < car1y + 50 < ykonum4 + 50)) and ((car5x < car1x < car5x + 50) or (car5x < car1x + 50 < car5x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum5 < car1y < ykonum5 + 50) or (ykonum5 < car1y + 60 < ykonum5 + 50)) and ((car6x < car1x < car6x + 50) or (car6x < car1x + 50 < car6x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
             oyundongusu()
         if ((ykonum6 < car1y < ykonum6 + 50) or (ykonum6 < car1y + 60 < ykonum6 + 50)) and ((car7x < car1x < car7x + 50) or (car7x < car1x + 50 < car7x + 50)):
+            m = 5
+            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
