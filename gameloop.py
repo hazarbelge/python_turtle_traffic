@@ -1,24 +1,30 @@
-
 import pickle
 import turtle
 import random
 import winsound
+import time
 
-import playsound
 
-
-arabagenisligi = 3
-arabayuksekligi = 3
+arabagenisligi = 1
+arabayuksekligi = 1
 screen = turtle.Screen()
 screen.title("Turtle Traffic")
-screen.setup(1.0, 1.0)
-background = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/arkaplan.gif"
-araba1 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba1.gif"
-araba2 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba2.gif"
-araba3 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba3.gif"
-araba4 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba4.gif"
-araba5 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba5.gif"
-araba6 = "C:/Users/hazar/PycharmProjects/Bilg.Muh.Gir.Oyun/GIFs/araba6.gif"
+screen.setup(1.0, 0.95)
+background = "GIFs/arkaplan.gif"
+araba1 = "GIFs/araba1.gif"
+araba2 = "GIFs/araba2.gif"
+araba3 = "GIFs/araba3.gif"
+araba4 = "GIFs/araba4.gif"
+araba5 = "GIFs/araba5.gif"
+araba6 = "GIFs/araba6.gif"
+araba7 = "GIFs/araba7.gif"
+screen.addshape(araba1)
+screen.addshape(araba2)
+screen.addshape(araba3)
+screen.addshape(araba4)
+screen.addshape(araba5)
+screen.addshape(araba6)
+screen.addshape(araba7)
 screen.bgcolor("grey")
 screen.bgpic(background)
 screen.update()
@@ -83,7 +89,7 @@ def bizimaraba():
     car1.goto(car1x, car1y)
     car1.speed(0)
     car1.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car1.shape("turtle")
+    car1.shape(araba1)
 
     turtle.listen()
     turtle.onkey(saga, "Right")
@@ -102,8 +108,8 @@ def gelenarabalar():
     car2.setheading(270)
     car2.goto(randx1, ykonum1)
     car2.speed(0)
-    car2.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car2.shape("turtle")
+    car2.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car2.shape(araba2)
 
 def gelenarabalar2():
     car3.color("green")
@@ -112,8 +118,8 @@ def gelenarabalar2():
     car3.setheading(270)
     car3.goto(randx2, ykonum2)
     car3.speed(0)
-    car3.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car3.shape("turtle")
+    car3.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car3.shape(araba3)
 
 def gelenarabalar3():
     car4.color("red")
@@ -122,8 +128,8 @@ def gelenarabalar3():
     car4.setheading(270)
     car4.goto(randx3, ykonum3)
     car4.speed(0)
-    car4.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car4.shape("turtle")
+    car4.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car4.shape(araba4)
 
 def gelenarabalar4():
     car5.color("yellow")
@@ -132,8 +138,8 @@ def gelenarabalar4():
     car5.setheading(270)
     car5.goto(randx4, ykonum4)
     car5.speed(0)
-    car5.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car5.shape("turtle")
+    car5.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car5.shape(araba5)
 
 def gelenarabalar5():
     car6.color("purple")
@@ -142,8 +148,8 @@ def gelenarabalar5():
     car6.setheading(270)
     car6.goto(randx5, ykonum5)
     car6.speed(0)
-    car6.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car6.shape("turtle")
+    car6.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car6.shape(araba6)
 
 def gelenarabalar6():
     car7.color("orange")
@@ -152,9 +158,8 @@ def gelenarabalar6():
     car7.setheading(270)
     car7.goto(randx6, ykonum6)
     car7.speed(0)
-    car7.shapesize(arabagenisligi, arabayuksekligi, 5)
-    car7.shape("turtle")
-
+    car7.shapesize(arabagenisligi, arabayuksekligi, 1)
+    car7.shape(araba7)
 
 def muzik():
     global m
@@ -199,12 +204,12 @@ def oyundongusu():
     yukleniyor.clear()
     yukleniyor.hideturtle()
 
-    ykonum1 = 400
-    ykonum2 = 540
-    ykonum3 = 680
+    ykonum1 = 410
+    ykonum2 = 550
+    ykonum3 = 690
     ykonum4 = 840
-    ykonum5 = 980
-    ykonum6 = 1090
+    ykonum5 = 970
+    ykonum6 = 1080
     car1x = car1.xcor()
     car1y = car1.ycor()
     randx1 = random.randrange(car1x - 150, car1x + 150)
@@ -230,11 +235,11 @@ def oyundongusu():
     yazi.color("white")
     yazi.penup()
     yazi.pencolor("black")
-    yazi.setposition(-40, 260)
+    yazi.setposition(-40, 270)
     yazi2.color("white")
     yazi2.penup()
     yazi2.pencolor("black")
-    yazi2.setposition(-40, 330)
+    yazi2.setposition(-40, 345)
     yazi3.color("white")
     yazi3.penup()
     yazi3.pencolor("black")
@@ -435,52 +440,59 @@ def oyundongusu():
         if not -320 < car1x < 280:
             global m
             m = 5
-            muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            muzik()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum1 < car1y < ykonum1 + 50) or (ykonum1 < car1y + 50 < ykonum1 + 50)) and ((car2x < car1x < car2x + 50) or (car2x < car1x + 50 < car2x + 50)):
+        if ((ykonum1 < car1y < ykonum1 + 90) or (ykonum1 < car1y + 90 < ykonum1 + 90)) and ((car2x < car1x < car2x + 50) or (car2x < car1x + 50 < car2x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum2 < car1y < ykonum2 + 50) or (ykonum2 < car1y + 50 < ykonum2 + 50)) and ((car3x < car1x < car3x + 50) or (car3x < car1x + 50 < car3x + 50)):
+        if ((ykonum2 < car1y < ykonum2 + 90) or (ykonum2 < car1y + 90 < ykonum2 + 90)) and ((car3x < car1x < car3x + 50) or (car3x < car1x + 50 < car3x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum3 < car1y < ykonum3 + 50) or (ykonum3 < car1y + 50 < ykonum3 + 50)) and ((car4x < car1x < car4x + 50) or (car4x < car1x + 50 < car4x + 50)):
+        if ((ykonum3 < car1y < ykonum3 + 90) or (ykonum3 < car1y + 90 < ykonum3 + 90)) and ((car4x < car1x < car4x + 50) or (car4x < car1x + 50 < car4x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum4 < car1y < ykonum4 + 50) or (ykonum4 < car1y + 50 < ykonum4 + 50)) and ((car5x < car1x < car5x + 50) or (car5x < car1x + 50 < car5x + 50)):
+        if ((ykonum4 < car1y < ykonum4 + 90) or (ykonum4 < car1y + 90 < ykonum4 + 90)) and ((car5x < car1x < car5x + 50) or (car5x < car1x + 50 < car5x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum5 < car1y < ykonum5 + 50) or (ykonum5 < car1y + 60 < ykonum5 + 50)) and ((car6x < car1x < car6x + 50) or (car6x < car1x + 50 < car6x + 50)):
+        if ((ykonum5 < car1y < ykonum5 + 90) or (ykonum5 < car1y + 90 < ykonum5 + 90)) and ((car6x < car1x < car6x + 50) or (car6x < car1x + 50 < car6x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
-        if ((ykonum6 < car1y < ykonum6 + 50) or (ykonum6 < car1y + 60 < ykonum6 + 50)) and ((car7x < car1x < car7x + 50) or (car7x < car1x + 50 < car7x + 50)):
+        if ((ykonum6 < car1y < ykonum6 + 90) or (ykonum6 < car1y + 90 < ykonum6 + 90)) and ((car7x < car1x < car7x + 50) or (car7x < car1x + 50 < car7x + 50)):
             m = 5
             muzik()
             yazi.clear()
             yazi2.clear()
             screen.delay()
+            time.sleep(2.2)
             oyundongusu()
 
 
