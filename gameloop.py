@@ -178,13 +178,13 @@ def muzik():
         m = 0
     if m == 6:
         winsound.PlaySound(crash, winsound.SND_ASYNC)
-        m = 1
+        m = 0
 
 def exit():
     screen.bye()
 
 def oyundongusu():
-
+    muzik()
     yukleniyor = turtle.Turtle()
     yukleniyor.penup()
     yukleniyor.setposition(-30, 0)
@@ -484,7 +484,6 @@ def oyundongusu():
             oyundongusu()
 
 
-muzik()
 oyundongusu()
 
 
