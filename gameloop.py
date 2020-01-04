@@ -30,7 +30,7 @@ screen.bgpic(background)
 screen.update()
 renkler = ["red", "blue", "green", "black", "purple", "yellow", "orange", "pink"]
 car1 = turtle.Turtle()
-car1x = -28
+car1x = -30
 car1y = -290
 car2 = turtle.Turtle()
 car3 = turtle.Turtle()
@@ -55,31 +55,30 @@ randx5 = random.randrange(-250,250)
 randx6 = random.randrange(-250,250)
 solatrue = False
 sagatrue = False
-asagitrue = True
 
 def sola():
     global solatrue
-    global sagatrue
-    global asagitrue
-    asagitrue = False
-    sagatrue = False
     solatrue = True
 
-def saga():
+def soladur():
     global solatrue
-    global sagatrue
-    global asagitrue
-    asagitrue = False
     solatrue = False
+
+def saga():
+    global sagatrue
     sagatrue = True
 
-def asagi():
+def sagadur():
+    global sagatrue
+    sagatrue = False
+
+    """def asagi():
     global solatrue
     global sagatrue
     global asagitrue
     solatrue = False
     sagatrue = False
-    asagitrue = True
+    asagitrue = True"""
 
 def bizimaraba():
     car1.color("black")
@@ -92,11 +91,14 @@ def bizimaraba():
     car1.shape(araba1)
 
     turtle.listen()
-    turtle.onkey(saga, "Right")
-    turtle.onkey(sola, "Left")
-    turtle.onkey(asagi, "Down")
-    turtle.onkey(saga, "d")
-    turtle.onkey(sola, "a")
+    turtle.onkeypress(saga, "Right")
+    turtle.onkeyrelease(sagadur, "Right")
+    turtle.onkeypress(sola, "Left")
+    turtle.onkeyrelease(soladur, "Left")
+    turtle.onkeypress(saga, "d")
+    turtle.onkeyrelease(sagadur, "d")
+    turtle.onkeypress(sola, "a")
+    turtle.onkeyrelease(soladur, "a")
     turtle.onkey(exit, "e")
     turtle.onkey(muzik, "m")
 
@@ -207,9 +209,9 @@ def oyundongusu():
     ykonum1 = 410
     ykonum2 = 550
     ykonum3 = 690
-    ykonum4 = 840
-    ykonum5 = 970
-    ykonum6 = 1080
+    ykonum4 = 850
+    ykonum5 = 990
+    ykonum6 = 1120
     car1x = car1.xcor()
     car1y = car1.ycor()
     randx1 = random.randrange(car1x - 150, car1x + 150)
@@ -218,11 +220,13 @@ def oyundongusu():
     randx4 = random.randrange(car1x - 150, car1x + 150)
     randx5 = random.randrange(car1x - 150, car1x + 150)
     randx6 = random.randrange(car1x - 150, car1x + 150)
+
     try:
         with open('score.dat', 'rb') as file:
             highskor = pickle.load(file)
     except:
         highskor = 0
+
     skor = 0
     yazi = turtle.Turtle()
     yazi2 = turtle.Turtle()
@@ -247,11 +251,11 @@ def oyundongusu():
     yazi4.color("white")
     yazi4.penup()
     yazi4.pencolor("black")
-    yazi4.setposition(530, 275)
+    yazi4.setposition(530, 300)
     yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
     yazi2.write("En İyi Skor: {}".format(highskor), align="center", font=("Arial", 40, "normal"))
     yazi3.write("Müzik Değiştirmek için M'ye\nOyundan Çıkmak için  E'ye\nBasın", align="center", font=("Arial", 20, "normal"))
-    yazi4.write("Sağa hareket için →(d)\nSola hareket için ←(a)\nDurmak için ↓(s)\nTuşlarını kullanabilirsiniz", align="center", font=("Arial", 20, "normal"))
+    yazi4.write("Sağa hareket için →(d)\nSola hareket için ←(a)\nTuşlarını kullanabilirsiniz", align="center", font=("Arial", 20, "normal"))
     yazi.hideturtle()
     yazi2.hideturtle()
     yazi3.hideturtle()
@@ -260,10 +264,10 @@ def oyundongusu():
     oyuncalisiyor = True
     while oyuncalisiyor:
         if solatrue:
-            car1x -= 6
+            car1x -= 7
             car1.goto(car1x, car1y)
         if sagatrue:
-            car1x += 6
+            car1x += 7
             car1.goto(car1x, car1y)
         if skor < 3:
             ykonum1 -= 6
