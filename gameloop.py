@@ -5,6 +5,7 @@ import winsound
 import time
 
 
+# degiskenleri tanimliyoruz
 arabagenisligi = 1
 arabayuksekligi = 1
 screen = turtle.Screen()
@@ -53,39 +54,37 @@ ykonum3 = 680
 ykonum4 = 840
 ykonum5 = 980
 ykonum6 = 1090
-randx1 = random.randrange(-250,250)
-randx2 = random.randrange(-250,250)
-randx3 = random.randrange(-250,250)
-randx4 = random.randrange(-250,250)
-randx5 = random.randrange(-250,250)
-randx6 = random.randrange(-250,250)
+randx1 = random.randrange(-250, 250)
+randx2 = random.randrange(-250, 250)
+randx3 = random.randrange(-250, 250)
+randx4 = random.randrange(-250, 250)
+randx5 = random.randrange(-250, 250)
+randx6 = random.randrange(-250, 250)
 solatrue = False
 sagatrue = False
 
+
+# hareketleri tanimliyoruz
 def sola():
     global solatrue
     solatrue = True
+
 
 def soladur():
     global solatrue
     solatrue = False
 
+
 def saga():
     global sagatrue
     sagatrue = True
+
 
 def sagadur():
     global sagatrue
     sagatrue = False
 
-    """def asagi():
-    global solatrue
-    global sagatrue
-    global asagitrue
-    solatrue = False
-    sagatrue = False
-    asagitrue = True"""
-
+# kontrol ettigimiz araba
 def bizimaraba():
     car1.color("black")
     car1.width(20)
@@ -109,12 +108,14 @@ def bizimaraba():
     turtle.onkey(muzik, "m")
 
 
+# ekranin yukarisindan gelen arabalar
 def gelenarabalar():
     car2.width(20)
     car2.penup()
     car2.speed(0)
     car2.shapesize(arabagenisligi, arabayuksekligi, 1)
     car2.shape(araba2)
+
 
 def gelenarabalar2():
     car3.width(20)
@@ -123,12 +124,14 @@ def gelenarabalar2():
     car3.shapesize(arabagenisligi, arabayuksekligi, 1)
     car3.shape(araba3)
 
+
 def gelenarabalar3():
     car4.width(20)
     car4.penup()
     car4.speed(0)
     car4.shapesize(arabagenisligi, arabayuksekligi, 1)
     car4.shape(araba4)
+
 
 def gelenarabalar4():
     car5.width(20)
@@ -137,12 +140,14 @@ def gelenarabalar4():
     car5.shapesize(arabagenisligi, arabayuksekligi, 1)
     car5.shape(araba5)
 
+
 def gelenarabalar5():
     car6.width(20)
     car6.penup()
     car6.speed(0)
     car6.shapesize(arabagenisligi, arabayuksekligi, 1)
     car6.shape(araba6)
+
 
 def gelenarabalar6():
     car7.width(20)
@@ -151,6 +156,8 @@ def gelenarabalar6():
     car7.shapesize(arabagenisligi, arabayuksekligi, 1)
     car7.shape(araba7)
 
+
+# m tusuna bastikca muzigi degistiriyoruz
 def muzik():
     global m
     m += 1
@@ -175,14 +182,17 @@ def muzik():
         winsound.PlaySound(crash, winsound.SND_ASYNC)
         m = 0
 
+
+# e tusu ile oyundan cikis
 def exitgame():
     winsound.PlaySound(bosses, winsound.SND_ASYNC)
     global oyuncalisiyor
     oyuncalisiyor = False
     turtle.bye()
-    
+
 
 def oyundongusu():
+    # oyunun baslangic sekansi
     muzik()
     yukleniyor.penup()
     yukleniyor.setposition(-30, 0)
@@ -197,6 +207,7 @@ def oyundongusu():
     yukleniyor.clear()
     yukleniyor.hideturtle()
 
+    # yukaridan gelen arabalarin y konumlari belirleyip x konumlarini random atiyoruz.
     ykonum1 = 410
     ykonum2 = 550
     ykonum3 = 690
@@ -212,6 +223,7 @@ def oyundongusu():
     randx5 = random.randrange(car1x - 150, car1x + 150)
     randx6 = random.randrange(car1x - 150, car1x + 150)
 
+    # score.dat dosyasindan highscore bakiyor. Eger olusturulmamis ise 0 kabul ediyor.
     try:
         with open('score.dat', 'rb') as file:
             highskor = pickle.load(file)
@@ -219,6 +231,8 @@ def oyundongusu():
         highskor = 0
 
     skor = 0
+
+    # Ekrandaki bilgi yazilari
     yazi.speed(0)
     yazi2.speed(0)
     yazi3.speed(0)
@@ -231,14 +245,16 @@ def oyundongusu():
     yazi2.setposition(-40, 345)
     yazi3.penup()
     yazi3.pencolor("black")
-    yazi3.setposition(-570, 300)
+    yazi3.setposition(-560, 300)
     yazi4.penup()
     yazi4.pencolor("black")
     yazi4.setposition(530, 300)
     yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
     yazi2.write("En İyi Skor: {}".format(highskor), align="center", font=("Arial", 40, "normal"))
-    yazi3.write("Müzik Değiştirmek için M'ye\nOyundan Çıkmak için  E'ye\nBasın", align="center", font=("Arial", 20, "normal"))
-    yazi4.write("Sağa hareket için →(d)\nSola hareket için ←(a)\nTuşlarını kullanabilirsiniz", align="center", font=("Arial", 20, "normal"))
+    yazi3.write("Müzik Değiştirmek için M'ye\nOyundan Çıkmak için  E'ye\nBasın", align="center",
+                font=("Arial", 20, "normal"))
+    yazi4.write("Sağa hareket için →(d)\nSola hareket için ←(a)\nTuşlarını kullanabilirsiniz", align="center",
+                font=("Arial", 20, "normal"))
     yazi.hideturtle()
     yazi2.hideturtle()
     yazi3.hideturtle()
@@ -246,12 +262,15 @@ def oyundongusu():
 
     oyuncalisiyor = True
     while oyuncalisiyor:
+        # saga ve sola hareketler
         if solatrue:
             car1x -= 7
             car1.goto(car1x, car1y)
         if sagatrue:
             car1x += 7
             car1.goto(car1x, car1y)
+
+        # skor arttikca arabalarin hizini arttiriyoruz.
         if skor < 3:
             ykonum1 -= 6
             ykonum2 -= 6
@@ -322,7 +341,9 @@ def oyundongusu():
         car6.goto(randx5, ykonum5)
         car7.goto(randx6, ykonum6)
 
-        if ((-285 > ykonum1 > -292) and skor < 7) or ((-285 > ykonum1 > -294) and 7 <= skor < 70) or ((-285 > ykonum1 > -296) and skor >= 70):
+        # Arabalari gectikce skoru arttiriyoruz. Ardindan skoru (ve gerekirse highscore) tekrardan yazdiriyoruz.
+        if ((-285 > ykonum1 > -292) and skor < 7) or ((-285 > ykonum1 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum1 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -330,7 +351,8 @@ def oyundongusu():
                 highskor += 1
                 yazi2.clear()
                 yazi2.write("En İyi Skor: {}".format(skor), align="center", font=("Arial", 40, "normal"))
-        if ((-285 > ykonum2 > -292) and skor < 7) or ((-285 > ykonum2 > -294) and 7 <= skor < 70) or ((-285 > ykonum2 > -296) and skor >= 70):
+        if ((-285 > ykonum2 > -292) and skor < 7) or ((-285 > ykonum2 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum2 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -338,7 +360,8 @@ def oyundongusu():
                 highskor += 1
                 yazi2.clear()
                 yazi2.write("En İyi Skor: {}".format(skor), align="center", font=("Arial", 40, "normal"))
-        if ((-285 > ykonum3 > -292) and skor < 7) or ((-285 > ykonum3 > -294) and 7 <= skor < 70) or ((-285 > ykonum3 > -296) and skor >= 70):
+        if ((-285 > ykonum3 > -292) and skor < 7) or ((-285 > ykonum3 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum3 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -346,7 +369,8 @@ def oyundongusu():
                 highskor += 1
                 yazi2.clear()
                 yazi2.write("En İyi Skor: {}".format(skor), align="center", font=("Arial", 40, "normal"))
-        if ((-285 > ykonum4 > -292) and skor < 7) or ((-285 > ykonum4 > -294) and 7 <= skor < 70) or ((-285 > ykonum4 > -296) and skor >= 70):
+        if ((-285 > ykonum4 > -292) and skor < 7) or ((-285 > ykonum4 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum4 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -354,7 +378,8 @@ def oyundongusu():
                 highskor += 1
                 yazi2.clear()
                 yazi2.write("En İyi Skor: {}".format(skor), align="center", font=("Arial", 40, "normal"))
-        if ((-285 > ykonum5 > -292) and skor < 7) or ((-285 > ykonum5 > -294) and 7 <= skor < 70) or ((-285 > ykonum5 > -296) and skor >= 70):
+        if ((-285 > ykonum5 > -292) and skor < 7) or ((-285 > ykonum5 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum5 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -362,7 +387,8 @@ def oyundongusu():
                 highskor += 1
                 yazi2.clear()
                 yazi2.write("En İyi Skor: {}".format(skor), align="center", font=("Arial", 40, "normal"))
-        if ((-285 > ykonum6 > -292) and skor < 7) or ((-285 > ykonum6 > -294) and 7 <= skor < 70) or ((-285 > ykonum6 > -296) and skor >= 70):
+        if ((-285 > ykonum6 > -292) and skor < 7) or ((-285 > ykonum6 > -294) and 7 <= skor < 70) or (
+                (-285 > ykonum6 > -296) and skor >= 70):
             skor += 1
             yazi.clear()
             yazi.write("Skor: {}".format(skor), align="center", font=("Arial", 38, "normal"))
@@ -375,6 +401,7 @@ def oyundongusu():
             with open('score.dat', 'wb') as file:
                 pickle.dump(skor, file)
 
+        # Kontrol ettigimiz arabanin konumuna göre arabalari gönderiyor(oyunu zorlastirmak adina)
         if -170 < car1x < 130:
             if ykonum1 < -400:
                 ykonum1 = 500
@@ -424,6 +451,8 @@ def oyundongusu():
         car6x = car6.xcor()
         car7x = car7.xcor()
 
+        # Carpma durumlari
+        # Ekrandaki sag ve sol bariyerlere carpma durumu
         if not -320 < car1x < 280:
             global m
             m = 5
@@ -433,7 +462,9 @@ def oyundongusu():
             muzik()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum1 < car1y < ykonum1 + 90) or (ykonum1 < car1y + 90 < ykonum1 + 90)) and ((car2x < car1x < car2x + 50) or (car2x < car1x + 50 < car2x + 50)):
+        # Arabalara carpma durumu
+        if ((ykonum1 < car1y < ykonum1 + 90) or (ykonum1 < car1y + 90 < ykonum1 + 90)) and (
+                (car2x < car1x < car2x + 50) or (car2x < car1x + 50 < car2x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -441,7 +472,8 @@ def oyundongusu():
             screen.delay()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum2 < car1y < ykonum2 + 90) or (ykonum2 < car1y + 90 < ykonum2 + 90)) and ((car3x < car1x < car3x + 50) or (car3x < car1x + 50 < car3x + 50)):
+        if ((ykonum2 < car1y < ykonum2 + 90) or (ykonum2 < car1y + 90 < ykonum2 + 90)) and (
+                (car3x < car1x < car3x + 50) or (car3x < car1x + 50 < car3x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -449,7 +481,8 @@ def oyundongusu():
             screen.delay()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum3 < car1y < ykonum3 + 90) or (ykonum3 < car1y + 90 < ykonum3 + 90)) and ((car4x < car1x < car4x + 50) or (car4x < car1x + 50 < car4x + 50)):
+        if ((ykonum3 < car1y < ykonum3 + 90) or (ykonum3 < car1y + 90 < ykonum3 + 90)) and (
+                (car4x < car1x < car4x + 50) or (car4x < car1x + 50 < car4x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -457,7 +490,8 @@ def oyundongusu():
             screen.delay()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum4 < car1y < ykonum4 + 90) or (ykonum4 < car1y + 90 < ykonum4 + 90)) and ((car5x < car1x < car5x + 50) or (car5x < car1x + 50 < car5x + 50)):
+        if ((ykonum4 < car1y < ykonum4 + 90) or (ykonum4 < car1y + 90 < ykonum4 + 90)) and (
+                (car5x < car1x < car5x + 50) or (car5x < car1x + 50 < car5x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -465,7 +499,8 @@ def oyundongusu():
             screen.delay()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum5 < car1y < ykonum5 + 90) or (ykonum5 < car1y + 90 < ykonum5 + 90)) and ((car6x < car1x < car6x + 50) or (car6x < car1x + 50 < car6x + 50)):
+        if ((ykonum5 < car1y < ykonum5 + 90) or (ykonum5 < car1y + 90 < ykonum5 + 90)) and (
+                (car6x < car1x < car6x + 50) or (car6x < car1x + 50 < car6x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -473,7 +508,8 @@ def oyundongusu():
             screen.delay()
             time.sleep(2.2)
             oyundongusu()
-        if ((ykonum6 < car1y < ykonum6 + 90) or (ykonum6 < car1y + 90 < ykonum6 + 90)) and ((car7x < car1x < car7x + 50) or (car7x < car1x + 50 < car7x + 50)):
+        if ((ykonum6 < car1y < ykonum6 + 90) or (ykonum6 < car1y + 90 < ykonum6 + 90)) and (
+                (car7x < car1x < car7x + 50) or (car7x < car1x + 50 < car7x + 50)):
             m = 5
             muzik()
             yazi.clear()
@@ -484,6 +520,7 @@ def oyundongusu():
 
 
 oyundongusu()
+
 
 
 
