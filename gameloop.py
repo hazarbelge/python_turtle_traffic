@@ -18,6 +18,7 @@ araba4 = "GIFs/araba4.gif"
 araba5 = "GIFs/araba5.gif"
 araba6 = "GIFs/araba6.gif"
 araba7 = "GIFs/araba7.gif"
+bosses = "Sounds/bosses.wav"
 screen.addshape(araba1)
 screen.addshape(araba2)
 screen.addshape(araba3)
@@ -38,6 +39,11 @@ car4 = turtle.Turtle()
 car5 = turtle.Turtle()
 car6 = turtle.Turtle()
 car7 = turtle.Turtle()
+yazi = turtle.Turtle()
+yazi2 = turtle.Turtle()
+yazi3 = turtle.Turtle()
+yazi4 = turtle.Turtle()
+yukleniyor = turtle.Turtle()
 skor = 0
 highskor = 0
 m = 0
@@ -99,66 +105,48 @@ def bizimaraba():
     turtle.onkeyrelease(sagadur, "d")
     turtle.onkeypress(sola, "a")
     turtle.onkeyrelease(soladur, "a")
-    turtle.onkey(exit, "e")
+    turtle.onkey(exitgame, "e")
     turtle.onkey(muzik, "m")
 
 
 def gelenarabalar():
-    car2.color("blue")
     car2.width(20)
     car2.penup()
-    car2.setheading(270)
-    car2.goto(randx1, ykonum1)
     car2.speed(0)
     car2.shapesize(arabagenisligi, arabayuksekligi, 1)
     car2.shape(araba2)
 
 def gelenarabalar2():
-    car3.color("green")
     car3.width(20)
     car3.penup()
-    car3.setheading(270)
-    car3.goto(randx2, ykonum2)
     car3.speed(0)
     car3.shapesize(arabagenisligi, arabayuksekligi, 1)
     car3.shape(araba3)
 
 def gelenarabalar3():
-    car4.color("red")
     car4.width(20)
     car4.penup()
-    car4.setheading(270)
-    car4.goto(randx3, ykonum3)
     car4.speed(0)
     car4.shapesize(arabagenisligi, arabayuksekligi, 1)
     car4.shape(araba4)
 
 def gelenarabalar4():
-    car5.color("yellow")
     car5.width(20)
     car5.penup()
-    car5.setheading(270)
-    car5.goto(randx4, ykonum4)
     car5.speed(0)
     car5.shapesize(arabagenisligi, arabayuksekligi, 1)
     car5.shape(araba5)
 
 def gelenarabalar5():
-    car6.color("purple")
     car6.width(20)
     car6.penup()
-    car6.setheading(270)
-    car6.goto(randx5, ykonum5)
     car6.speed(0)
     car6.shapesize(arabagenisligi, arabayuksekligi, 1)
     car6.shape(araba6)
 
 def gelenarabalar6():
-    car7.color("orange")
     car7.width(20)
     car7.penup()
-    car7.setheading(270)
-    car7.goto(randx6, ykonum6)
     car7.speed(0)
     car7.shapesize(arabagenisligi, arabayuksekligi, 1)
     car7.shape(araba7)
@@ -187,12 +175,15 @@ def muzik():
         winsound.PlaySound(crash, winsound.SND_ASYNC)
         m = 0
 
-def exit():
-    screen.bye()
+def exitgame():
+    winsound.PlaySound(bosses, winsound.SND_ASYNC)
+    global oyuncalisiyor
+    oyuncalisiyor = False
+    turtle.bye()
+    
 
 def oyundongusu():
     muzik()
-    yukleniyor = turtle.Turtle()
     yukleniyor.penup()
     yukleniyor.setposition(-30, 0)
     yukleniyor.write("Yükleniyor...", align="center", font=("Arial", 50, "normal"))
@@ -228,27 +219,19 @@ def oyundongusu():
         highskor = 0
 
     skor = 0
-    yazi = turtle.Turtle()
-    yazi2 = turtle.Turtle()
-    yazi3 = turtle.Turtle()
-    yazi4 = turtle.Turtle()
     yazi.speed(0)
     yazi2.speed(0)
     yazi3.speed(0)
     yazi4.speed(0)
-    yazi.color("white")
     yazi.penup()
     yazi.pencolor("black")
     yazi.setposition(-40, 270)
-    yazi2.color("white")
     yazi2.penup()
     yazi2.pencolor("black")
     yazi2.setposition(-40, 345)
-    yazi3.color("white")
     yazi3.penup()
     yazi3.pencolor("black")
-    yazi3.setposition(-560, 300)
-    yazi4.color("white")
+    yazi3.setposition(-570, 300)
     yazi4.penup()
     yazi4.pencolor("black")
     yazi4.setposition(530, 300)
